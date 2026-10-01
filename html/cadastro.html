@@ -14,18 +14,24 @@
         <h1>Cadastro - Projeto ONG</h1>
 
         <nav>
-            <input type="checkbox" id="menu-toggle">
-            <label for="menu-toggle" class="menu-icon">☰</label>
+            <button type="button" class="menu-icon" aria-label="Abrir menu" aria-expanded="false">
+                ☰
+            </button>
 
             <div class="menu">
                 <a href="#" id="link-inicio">Início</a>
 
                 <div class="dropdown">
-                    <span class="dropdown-titulo" tabindex="0">Projetos</span>
+                    <button type="button" class="dropdown-titulo" aria-expanded="false">
+                        Projetos
+                    </button>
 
                     <div class="submenu">
                         <a href="#" id="link-projetos">Projetos sociais</a>
-                        <a href="#" id="link-campanhas">Campanhas</a>
+                        <a href="#" id="link-campanhas">Campanhas</a><button type="button" class="dropdown-titulo"
+                            aria-expanded="false">
+                            Projetos
+                        </button>
                         <a href="#" id="link-voluntariado">Voluntariado</a>
                     </div>
                 </div>

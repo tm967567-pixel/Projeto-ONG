@@ -6,6 +6,40 @@ function carregarPagina(conteudo) {
 
 function configurarNavegacao(paginaInicio, paginaProjetos, paginaCadastro) {
 
+    const menuBotao = document.querySelector(".menu-icon");
+const menu = document.querySelector(".menu");
+
+if (menuBotao && menu) {
+    menuBotao.addEventListener("click", function () {
+
+        const aberto = menuBotao.getAttribute("aria-expanded") === "true";
+
+        menuBotao.setAttribute("aria-expanded", String(!aberto));
+
+        menu.classList.toggle("menu-aberto");
+
+    });
+
+    const projetosBotao = document.querySelector(".dropdown-titulo");
+const submenu = document.querySelector(".submenu");
+
+if (projetosBotao && submenu) {
+    projetosBotao.addEventListener("click", function () {
+
+        const aberto =
+            projetosBotao.getAttribute("aria-expanded") === "true";
+
+        projetosBotao.setAttribute(
+            "aria-expanded",
+            String(!aberto)
+        );
+
+        submenu.classList.toggle("submenu-aberto");
+
+    });
+}
+}
+
     const linkInicio = document.querySelector("#link-inicio");
 
     if (linkInicio) {

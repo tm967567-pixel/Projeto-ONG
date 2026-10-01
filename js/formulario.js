@@ -15,10 +15,16 @@ function paginaCadastro() {
         <form action="#" method="post" id="form-cadastro" novalidate>
 
             <fieldset>
+
                 <legend>Dados pessoais</legend>
 
                 <label for="nome">Nome completo:</label>
-                <input type="text" id="nome" name="nome" required>
+                <input
+                    type="text"
+                    id="nome"
+                    name="nome"
+                    required
+                >
 
                 <br><br>
 
@@ -45,6 +51,7 @@ function paginaCadastro() {
             </fieldset>
 
             <fieldset>
+
                 <legend>Dados de contato</legend>
 
                 <label for="email">E-mail:</label>
@@ -70,6 +77,7 @@ function paginaCadastro() {
             </fieldset>
 
             <fieldset>
+
                 <legend>Endereço</legend>
 
                 <label for="endereco">Endereço:</label>
@@ -124,6 +132,7 @@ function paginaCadastro() {
     configurarFormulario();
 }
 
+
 function validarCampo(campo, mensagem) {
 
     const mensagemExistente = campo.nextElementSibling;
@@ -138,13 +147,26 @@ function validarCampo(campo, mensagem) {
     campo.classList.remove("campo-erro");
     campo.classList.remove("campo-sucesso");
 
+    const idMensagem = `${campo.id}-erro`;
+
     if (campo.value.trim() === "") {
 
         campo.classList.add("campo-erro");
 
+        campo.setAttribute("aria-invalid", "true");
+        campo.setAttribute("aria-describedby", idMensagem);
+
         campo.insertAdjacentHTML(
             "afterend",
-            `<span class="mensagem-erro">${mensagem}</span>`
+            `
+                <span
+                    id="${idMensagem}"
+                    class="mensagem-erro"
+                    role="alert"
+                >
+                    ${mensagem}
+                </span>
+            `
         );
 
         return false;
@@ -154,9 +176,20 @@ function validarCampo(campo, mensagem) {
 
         campo.classList.add("campo-erro");
 
+        campo.setAttribute("aria-invalid", "true");
+        campo.setAttribute("aria-describedby", idMensagem);
+
         campo.insertAdjacentHTML(
             "afterend",
-            `<span class="mensagem-erro">${mensagem}</span>`
+            `
+                <span
+                    id="${idMensagem}"
+                    class="mensagem-erro"
+                    role="alert"
+                >
+                    ${mensagem}
+                </span>
+            `
         );
 
         return false;
@@ -164,8 +197,12 @@ function validarCampo(campo, mensagem) {
 
     campo.classList.add("campo-sucesso");
 
+    campo.setAttribute("aria-invalid", "false");
+    campo.removeAttribute("aria-describedby");
+
     return true;
 }
+
 
 function configurarFormulario() {
 
@@ -212,15 +249,25 @@ function configurarFormulario() {
             }
 
             const cadastro = {
+
                 nome: document.querySelector("#nome").value.trim(),
+
                 email: document.querySelector("#email").value.trim(),
+
                 cpf: document.querySelector("#cpf").value.trim(),
+
                 telefone: document.querySelector("#telefone").value.trim(),
+
                 nascimento: document.querySelector("#nascimento").value,
+
                 endereco: document.querySelector("#endereco").value.trim(),
+
                 cep: document.querySelector("#cep").value.trim(),
+
                 cidade: document.querySelector("#cidade").value.trim(),
+
                 estado: document.querySelector("#estado").value.trim()
+
             };
 
             salvarCadastro(cadastro);
@@ -233,7 +280,12 @@ function configurarFormulario() {
 
             formulario.insertAdjacentHTML(
                 "beforebegin",
-                '<div class="alerta" role="alert"><strong>Sucesso:</strong> Cadastro enviado com sucesso!</div>'
+                `
+                    <div class="alerta" role="alert">
+                        <strong>Sucesso:</strong>
+                        Cadastro enviado com sucesso!
+                    </div>
+                `
             );
 
         });
@@ -241,6 +293,7 @@ function configurarFormulario() {
     }
 
 }
+
 
 function obterMensagemErro(campo) {
 
@@ -283,24 +336,43 @@ function obterMensagemErro(campo) {
     return "Preencha este campo corretamente.";
 }
 
+
 function carregarCadastro() {
 
     const cadastro = obterCadastro();
 
     if (cadastro) {
 
-        document.querySelector("#nome").value = cadastro.nome || "";
-        document.querySelector("#email").value = cadastro.email || "";
-        document.querySelector("#cpf").value = cadastro.cpf || "";
-        document.querySelector("#telefone").value = cadastro.telefone || "";
-        document.querySelector("#nascimento").value = cadastro.nascimento || "";
-        document.querySelector("#endereco").value = cadastro.endereco || "";
-        document.querySelector("#cep").value = cadastro.cep || "";
-        document.querySelector("#cidade").value = cadastro.cidade || "";
-        document.querySelector("#estado").value = cadastro.estado || "";
+        document.querySelector("#nome").value =
+            cadastro.nome || "";
+
+        document.querySelector("#email").value =
+            cadastro.email || "";
+
+        document.querySelector("#cpf").value =
+            cadastro.cpf || "";
+
+        document.querySelector("#telefone").value =
+            cadastro.telefone || "";
+
+        document.querySelector("#nascimento").value =
+            cadastro.nascimento || "";
+
+        document.querySelector("#endereco").value =
+            cadastro.endereco || "";
+
+        document.querySelector("#cep").value =
+            cadastro.cep || "";
+
+        document.querySelector("#cidade").value =
+            cadastro.cidade || "";
+
+        document.querySelector("#estado").value =
+            cadastro.estado || "";
 
     }
 
 }
+
 
 export { paginaCadastro };
