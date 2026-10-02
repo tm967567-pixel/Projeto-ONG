@@ -11,6 +11,10 @@ import {
     paginaCadastro
 } from "./formulario.js";
 
+import {
+    configurarTema
+} from "./tema.js";
+
 
 function paginaInicio() {
 
@@ -34,7 +38,7 @@ function paginaInicio() {
 
         <section>
             <h2>Nossa atuação</h2>
-            <img src="../imagens/ong.png" alt="Voluntários da ONG realizando uma ação social">
+            <img src="/ong.webp" alt="Voluntários da ONG realizando uma ação social">
             <p>
                 Atuamos por meio de projetos sociais e ações voluntárias,
                 buscando transformar a realidade da comunidade.
@@ -105,3 +109,5 @@ configurarNavegacao(
     paginaProjetos,
     paginaCadastro
 );
+
+configurarTema();
